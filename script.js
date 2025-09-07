@@ -23,7 +23,7 @@ const bgLayers = [
 const proportionalSize = (size) =>
   innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
 
-// ✅ AABB collision detection
+// AABB collision detection
 function isColliding(rectA, rectB) {
   return (
     rectA.position.x < rectB.position.x + rectB.width &&
@@ -41,7 +41,7 @@ class Player {
     this.height = proportionalSize(40);
   }
   draw() {
-    // ✅ Visual animation feedback based on state
+    // Visual animation feedback based on state
     if (this.velocity.y < 0) {
       ctx.fillStyle = "#1E90FF"; // jumping = blue
     } else if (this.velocity.x !== 0) {
@@ -150,7 +150,7 @@ const enemies = [
   new Enemy(3300, proportionalSize(370), 50, 50, 3),
 ];
 
-// ✅ Game Reset
+// Game Reset
 function resetGame() {
   player = new Player();
   checkpoints.forEach((cp) => (cp.claimed = false));
@@ -192,7 +192,7 @@ const animate = () => {
     }
   }
 
-  // ✅ Platform collision
+  // Platform collision
   platforms.forEach((platform) => {
     if (
       player.position.x < platform.position.x + platform.width &&
@@ -205,7 +205,7 @@ const animate = () => {
     }
   });
 
-  // ✅ Checkpoint collision
+  // Checkpoint collision
   checkpoints.forEach((checkpoint, index) => {
     if (
       isColliding(player, checkpoint) &&
@@ -224,7 +224,7 @@ const animate = () => {
     }
   });
 
-  // ✅ Enemy collision
+  // Enemy collision
   enemies.forEach((enemy) => {
     if (isColliding(player, enemy)) {
       cancelAnimationFrame(animationId);
